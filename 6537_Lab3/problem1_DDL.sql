@@ -1,0 +1,58 @@
+CREATE TABLE 
+`lab 3`.`EMOLYEE` 
+( `ssn` INT(255) NOT NULL , 
+`fname` VARCHAR(20) NOT NULL , 
+`lname` VARCHAR(20) NOT NULL , 
+`bdate` DATE NOT NULL , `address` 
+VARCHAR(50) NOT NULL , 
+`gender` VARCHAR(10) NOT NULL , 
+`salary` INT(10) NOT NULL , 
+`Dno` INT(20) NOT NULL , 
+PRIMARY KEY (`ssn`)) 
+  
+
+
+CREATE TABLE 
+`lab 3`.`DEPARTMENT` 
+( `Dnumber` INT(20) NOT NULL , 
+`Dname` VARCHAR(20) NOT NULL , 
+`mgr_ssn` INT(20) NOT NULL , 
+`mgr_start_date` DATE NOT NULL , 
+PRIMARY KEY (`Dnumber`)) 
+  
+
+
+CREATE TABLE 
+`lab 3`.`PROJECT` 
+( `Pnumber` INT(20) NOT NULL , 
+`Pname` VARCHAR(20) NOT NULL , 
+`Plocation` VARCHAR(50) NOT NULL , 
+`Dno` INT(20) NOT NULL , 
+PRIMARY KEY (`Pnumber`)) 
+  
+
+
+ALTER TABLE 
+`EMOLYEE`
+ ADD CONSTRAINT `Dno` 
+ FOREIGN KEY (`Dno`) 
+ REFERENCES `DEPERTMENT`(`Dnumber`) 
+ ON DELETE RESTRICT 
+ ON UPDATE CASCADE;
+
+
+ ALTER TABLE 
+ `DEPERTMENT` 
+ ADD CONSTRAINT `mgr_ssn` 
+ FOREIGN KEY (`mgr_ssn`) 
+ REFERENCES `EMOLYEE`(`ssn`) 
+ ON DELETE RESTRICT 
+ ON UPDATE CASCADE;
+
+
+ ALTER TABLE `PROJECT` 
+ ADD CONSTRAINT `D_no` 
+ FOREIGN KEY (`Dno`) 
+ REFERENCES `DEPERTMENT`(`Dnumber`) 
+ ON DELETE RESTRICT 
+ ON UPDATE RESTRICT;

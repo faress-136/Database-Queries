@@ -1,0 +1,37 @@
+1-
+
+Do you really want to execute 
+"DELETE FROM `DEPERTMENT`
+ WHERE `DEPERTMENT`.`Dnumber` = 1"?
+
+
+  #1451 - Cannot delete or update a parent row: 
+  a foreign key constraint fails 
+  (`lab 3`.`PROJECT`, CONSTRAINT `D_no` FOREIGN KEY (`Dno`) 
+  REFERENCES `DEPERTMENT` (`Dnumber`) ON UPDATE CASCADE)
+
+//////////////////////////////////////////////////////////////////////////////////////////
+2-
+
+
+SQL query: Copy Edit Edit
+
+
+INSERT INTO `PROJECT` 
+(`Pnumber`, `Pname`, `Plocation`, `Dno`) 
+VALUES ('4', 'Fruit Ninja', 'Alexandria', '4')
+MySQL said: Documentation
+
+#1366 - Incorrect integer value: '' for column `lab 3`.`PROJECT`.`Dno` at row 1
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+3-
+
+Then I will must insert in EMPLOYEE table ssn of employees/managers with department number then enter in the DEPERTMENT table 
+the Dnumber corresdponding to Dno of the managers/employees ssn then link the Dno in emolyees table to be a foreign key 
+to Dnumber (primary key) in DEPERTMENT table and link mgr_ssn in the DEPERTMENT table as a foreign key to primary key
+of ssn in EMPLOYEE table.
+I have to remove connections first so there won't be independent values or tables, insert values of mgr_ssn and Dno then
+add the connections of foreign keys.
+

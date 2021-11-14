@@ -1,0 +1,80 @@
+CREATE TABLE 
+`Lab 3.2`.`book` 
+( `book_id` INT(255) NOT NULL AUTO_INCREMENT , 
+`title` VARCHAR(255) NOT NULL , 
+`price` FLOAT NOT NULL , 
+`pub_id` INT(255) NOT NULL , 
+`category_id` INT(255) NOT NULL , 
+PRIMARY KEY (`book_id`)) 
+ 
+
+
+CREATE TABLE 
+`Lab 3.2`.`category` 
+( `category_id` INT(255) NOT NULL AUTO_INCREMENT , 
+`name` VARCHAR(255) NOT NULL , 
+PRIMARY KEY (`category_id`)) 
+ENGINE = InnoDB;
+
+
+CREATE TABLE 
+`Lab 3.2`.`PUBLISHER` 
+( `pub_id` INT(255) NOT NULL , 
+`name` VARCHAR(255) NOT NULL , 
+`address` VARCHAR(255) NOT NULL , 
+PRIMARY KEY (`pub_id`)) 
+
+
+
+CREATE TABLE 
+`Lab 3.2`.`MEMBER` 
+( `member_id` INT(255) NOT NULL , 
+`name` VARCHAR(255) NOT NULL , 
+`address` VARCHAR(255) NOT NULL , 
+`join_date` DATETIME NOT NULL , 
+PRIMARY KEY (`member_id`)) 
+
+
+
+CREATE TABLE 
+`Lab 3.2`.`BORROWING_BOOK` 
+( `member_id` INT(255) NOT NULL , 
+`book_id` INT(255) NOT NULL , 
+`borrow_date` DATETIME NOT NULL , 
+`due_date` DATETIME NOT NULL , 
+`return_date` DATETIME NOT NULL , 
+PRIMARY KEY (`book_id`, `member_id`, `borrow_date`)) 
+
+
+
+ALTER TABLE `BOOK` 
+ADD CONSTRAINT `pub_id` 
+FOREIGN KEY (`pub_id`) 
+REFERENCES `PUBLISHER`(`pub_id`) 
+ON DELETE RESTRICT 
+ON UPDATE CASCADE; 
+
+ALTER TABLE `BOOK` 
+ADD CONSTRAINT `category_id` 
+FOREIGN KEY (`category_id`) 
+REFERENCES `CATEGORY`(`category_id`) 
+ON DELETE RESTRICT 
+ON UPDATE CASCADE;
+
+ALTER TABLE `BORROWING_BOOK` 
+DROP FOREIGN KEY `book_id`; 
+ALTER TABLE `BORROWING_BOOK` 
+ADD CONSTRAINT `book_id` 
+FOREIGN KEY (`book_id`) 
+REFERENCES `BOOK`(`book_id`) 
+ON DELETE RESTRICT 
+ON UPDATE CASCADE; 
+
+ALTER TABLE `BORROWING_BOOK` 
+DROP FOREIGN KEY `mem_id`; 
+ALTER TABLE `BORROWING_BOOK` 
+ADD CONSTRAINT `mem_id` 
+FOREIGN KEY (`member_id`) 
+REFERENCES `MEMBER`(`member_id`) 
+ON DELETE RESTRICT 
+ON UPDATE CASCADE;
